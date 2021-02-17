@@ -65,17 +65,18 @@ jobs:
           images: pbstriker38/chisel
           tag-latest: true
           # Outputs:
-          # v1.2.3
-          # v1.2
-          # v1
+          # jpillora/chisel:1.2.3
+          # jpillora/chisel:1.2
+          # jpillora/chisel:1
+          # jpillora/chisel:latest
           tag-semver: |
-            {{raw}}
-            v{{major}}.{{minor}}
-            v{{major}}
+            {{version}}
+            {{major}}.{{minor}}
+            {{major}}
       - name: Tags
-        run: echo ${{ steps.docker_meta.outputs.tags }}
+        run: echo "${{ steps.docker_meta.outputs.tags }}"
       - name: Labels
-        run: echo ${{ steps.docker_meta.outputs.labels }}
+        run: echo "${{ steps.docker_meta.outputs.labels }}"
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
