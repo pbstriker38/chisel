@@ -69,9 +69,13 @@ jobs:
           # v1.2
           # v1
           tag-semver: |
-          {{raw}}
-          v{{major}}.{{minor}}
-          v{{major}}
+            {{raw}}
+            v{{major}}.{{minor}}
+            v{{major}}
+      - name: Tags
+        run: echo ${{ steps.docker_meta.outputs.tags }}
+      - name: Labels
+        run: echo ${{ steps.docker_meta.outputs.labels }}
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
